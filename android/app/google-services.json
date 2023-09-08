@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "513871637881",
+    "project_id": "votevoiceconnect",
+    "storage_bucket": "votevoiceconnect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513871637881:android:868f71887d9a267ab853a8",
+        "android_client_info": {
+          "package_name": "com.example.votevoiceconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513871637881-tbmmb2t8e7flruf0k6v5fj64p14m02u5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR8uiWSQS4ISRcd-fka9Zdi54n5Cpbb_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513871637881-tbmmb2t8e7flruf0k6v5fj64p14m02u5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
