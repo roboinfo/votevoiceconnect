@@ -28,34 +28,13 @@ class ComplaintPieChart extends StatefulWidget {
 
 class _ComplaintPieChartState extends State<ComplaintPieChart> {
 
-  //late List<Article> _articleModel = [];
   List<ComplaintReport> _complaintList = <ComplaintReport>[];
-
-  Widget _buildLegendItem(String text, Color color) {
-    return Row(
-      children: [
-        Container(
-          width: 16,
-          height: 16,
-          color: color,
-        ),
-        SizedBox(width: 4),
-        Text(text),
-      ],
-    );
-  }
 
   @override
   void initState() {
     super.initState();
-    //_getData();
     _getComplaintsByUserId();
   }
-
-  // void _getData() async {
-  //   _articleModel = (await ApiServiceArticle().getArticle())!;
-  //   Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
-  // }
 
   _getComplaintsByUserId() async {
     ComplaintService _complaintService = ComplaintService();
@@ -79,28 +58,32 @@ class _ComplaintPieChartState extends State<ComplaintPieChart> {
     });
   }
 
-  // List<BarChartGroupData> _createSampleData() {
-  //   List<BarChartGroupData> barChartData = [];
-  //   for (int i = 0; i < _articleModel.length; i++) {
-  //     final chartModel = _articleModel[i];
-  //     barChartData.add(
-  //       BarChartGroupData(
-  //         x: i,
-  //         barRods: [
-  //           BarChartRodData(
-  //               toY: chartModel.id.toDouble(), width: 12, color: Colors.amber),
-  //         ],
-  //
-  //         //showingTooltipIndicators: [0],
-  //
-  //       ),
-  //     );
-  //   }
-  //   return barChartData;
-  // }
+  Map<ComplaintStatus, int> _calculateStatusDistribution() {
+    Map<ComplaintStatus, int> distribution = {
+      ComplaintStatus.PENDING: 0,
+      ComplaintStatus.REJECTED: 0,
+      ComplaintStatus.RESOLVED: 0,
+    };
+    for (var complaint in _complaintList) {
+      if (complaint.complaintStatus != null) {
+        ComplaintStatus? status =
+        complaintStatusValues.map[complaint.complaintStatus!];
+        if (status != null) {
+          distribution[status] = (distribution[status] ?? 0) + 1;
+        }
+      }
+    }
+    return distribution;
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    Map<ComplaintStatus, int> statusDistribution = _calculateStatusDistribution();
+
+    // Calculate total complaints for percentage calculation
+    int totalComplaints = statusDistribution.values.fold(0, (sum, count) => sum + count);
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
       body: Card(
@@ -110,40 +93,67 @@ class _ComplaintPieChartState extends State<ComplaintPieChart> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildLegendItem("Complaint ID", Colors.amber),
-                _buildLegendItem("Status Length", Colors.green),
-                _buildLegendItem("Type Length", Colors.red),
+                _buildLegendItem("Pending", Colors.amber, statusDistribution[ComplaintStatus.PENDING]!, totalComplaints),
+                _buildLegendItem("Resolved", Colors.green, statusDistribution[ComplaintStatus.RESOLVED]!, totalComplaints),
+                _buildLegendItem("Rejected", Colors.red, statusDistribution[ComplaintStatus.REJECTED]!, totalComplaints),
               ],
             ),
             Expanded(
               child: PieChart(
                 PieChartData(
-                  centerSpaceRadius: 5,
+                  centerSpaceRadius: 5, // Adjust the center space radius as needed
                   borderData: FlBorderData(show: false),
-                  sectionsSpace: 2,
+                  sectionsSpace: 2, // Adjust the sections space as needed
                   sections: [
                     PieChartSectionData(
-                      value: _complaintList.length.toDouble(),
+                      title: 'Pending',
+                      value: statusDistribution[ComplaintStatus.PENDING]?.toDouble() ?? 0,
                       color: Colors.amber,
                       radius: 70,
                     ),
                     PieChartSectionData(
-                      value: _complaintList.first.complaintStatus!.toString().length.toDouble(),
+                      title: 'Resolved',
+                      value: statusDistribution[ComplaintStatus.RESOLVED]?.toDouble() ?? 0,
                       color: Colors.green,
                       radius: 70,
                     ),
                     PieChartSectionData(
-                      value: _complaintList.last.complaintStatus!.toString().length.toDouble(),
+                      title: 'Rejected',
+                      value: statusDistribution[ComplaintStatus.REJECTED]?.toDouble() ?? 0,
                       color: Colors.red,
                       radius: 70,
                     ),
                   ],
+                  startDegreeOffset: 180,
+                  pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                    // Handle pie chart touches here if needed
+                  }),
                 ),
               ),
+
+
             ),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildLegendItem(String text, Color color, int count, int total) {
+    double percentage = total > 0 ? (count / total) * 100 : 0;
+
+    return Row(
+      children: [
+        Container(
+          width: 16,
+          height: 16,
+          color: color,
+        ),
+        SizedBox(width: 4),
+        Text("$text (${percentage.toStringAsFixed(2)}%)"),
+      ],
+    );
+  }
 }
+
+

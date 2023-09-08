@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:pay/pay.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:votevoiceconnect/ecom/models/donation.dart';
 import 'package:votevoiceconnect/ecom/models/product.dart';
 import 'package:votevoiceconnect/ecom/services/donation_service.dart';
@@ -39,9 +40,9 @@ class _DonationScreenState extends State<DonationScreen> {
   // Google Pay button
 
   final amount = TextEditingController();
-  final name = TextEditingController();
+  //final name = TextEditingController();
   final mobile = TextEditingController();
-  final email = TextEditingController();
+  //final email = TextEditingController();
   final adress = TextEditingController();
   final cause = TextEditingController();
   final referral = TextEditingController();
@@ -49,9 +50,9 @@ class _DonationScreenState extends State<DonationScreen> {
   //*****************************
   clearText() {
     amount.clear();
-    name.clear();
+    //name.clear();
     mobile.clear();
-    email.clear();
+    //email.clear();
     adress.clear();
     cause.clear();
     referral.clear();
@@ -62,6 +63,31 @@ class _DonationScreenState extends State<DonationScreen> {
 
   StateCategoryService _statecategoryService = StateCategoryService();
   final List<StateCategory> _statecategoryList = [];
+  String _userName = '';
+  String _userEmail = '';
+
+  @override
+  void initState() {
+    _getUserName();
+    _getUserEmail();
+    _getAllStateCategories();
+    super.initState();
+  }
+
+  _getUserName() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String userName = _prefs.getString('userName') ?? '';
+    setState(() {
+      _userName = userName;
+    });
+  }
+  _getUserEmail() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String userEmail = _prefs.getString('userEmail') ?? '';
+    setState(() {
+      _userEmail = userEmail;
+    });
+  }
 
   _getAllStateCategories() async {
     var stateCategories = await _statecategoryService.getStateCategories();
@@ -77,11 +103,7 @@ class _DonationScreenState extends State<DonationScreen> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _getAllStateCategories();
-  }
+
 
   _showSnackMessage(message) {
     var snackBar = SnackBar(
@@ -206,64 +228,64 @@ class _DonationScreenState extends State<DonationScreen> {
             const SizedBox(
               height: 5,
             ),
-            Row(
-              children: <Widget>[
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.tight,
-                  child: Container(
-                      //alignment: Alignment.center,
-                      padding: const EdgeInsets.only(top: 10.0, left: 20.0),
-                      child: const Text(
-                        'Enter Name *',
-                        style: TextStyle(
-                            color: Colors.black38,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      )),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Row(
-              children: <Widget>[
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.tight,
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 0.0, left: 10.0, right: 10.0),
-                    child: TextFormField(
-                      autofocus: false,
-                      decoration: InputDecoration(
-                        filled: true,
-                        //<-- SEE HERE
-                        //fillColor: Color.fromRGBO(0, 0, 0, 0.10),
-                        fillColor: Colors.white,
-
-                        hintText: 'Enter Your Full Name',
-                        labelStyle: TextStyle(fontSize: 20.0),
-
-                        errorStyle:
-                            TextStyle(color: Colors.redAccent, fontSize: 15),
-                      ),
-                      controller: name,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Enter Name';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
+            // Row(
+            //   children: <Widget>[
+            //     Flexible(
+            //       flex: 1,
+            //       fit: FlexFit.tight,
+            //       child: Container(
+            //           //alignment: Alignment.center,
+            //           padding: const EdgeInsets.only(top: 10.0, left: 20.0),
+            //           child: const Text(
+            //             'Enter Name *',
+            //             style: TextStyle(
+            //                 color: Colors.black38,
+            //                 fontWeight: FontWeight.bold,
+            //                 fontSize: 15.0),
+            //           )),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 5,
+            // ),
+            // Row(
+            //   children: <Widget>[
+            //     Flexible(
+            //       flex: 1,
+            //       fit: FlexFit.tight,
+            //       child: Container(
+            //         padding: const EdgeInsets.only(
+            //             top: 0.0, left: 10.0, right: 10.0),
+            //         child: TextFormField(
+            //           autofocus: false,
+            //           decoration: InputDecoration(
+            //             filled: true,
+            //             //<-- SEE HERE
+            //             //fillColor: Color.fromRGBO(0, 0, 0, 0.10),
+            //             fillColor: Colors.white,
+            //
+            //             hintText: 'Enter Your Full Name',
+            //             labelStyle: TextStyle(fontSize: 20.0),
+            //
+            //             errorStyle:
+            //                 TextStyle(color: Colors.redAccent, fontSize: 15),
+            //           ),
+            //           controller: name,
+            //           validator: (value) {
+            //             if (value == null || value.isEmpty) {
+            //               return 'Please Enter Name';
+            //             }
+            //             return null;
+            //           },
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 5,
+            // ),
             Row(
               children: <Widget>[
                 Flexible(
@@ -322,66 +344,66 @@ class _DonationScreenState extends State<DonationScreen> {
             const SizedBox(
               height: 5,
             ),
-            Row(
-              children: <Widget>[
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.tight,
-                  child: Container(
-                      //alignment: Alignment.center,
-                      padding: const EdgeInsets.only(top: 0.0, left: 20.0),
-                      child: const Text(
-                        'Email ID *',
-                        style: TextStyle(
-                            color: Colors.black38,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      )),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Row(
-              children: <Widget>[
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.tight,
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 0.0, left: 10.0, right: 10.0),
-                    child: TextFormField(
-                      autofocus: false,
-                      decoration: InputDecoration(
-                        filled: true,
-                        //<-- SEE HERE
-                        //fillColor: Color.fromRGBO(0, 0, 0, 0.10),
-                        fillColor: Colors.white,
-
-                        hintText: 'Enter Your Email ID',
-                        labelStyle: TextStyle(fontSize: 20.0),
-
-                        errorStyle:
-                            TextStyle(color: Colors.redAccent, fontSize: 15),
-                      ),
-                      controller: email,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Enter Email';
-                        } else if (!value.contains('@')) {
-                          return 'Please Enter Valid Email';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
+            // Row(
+            //   children: <Widget>[
+            //     Flexible(
+            //       flex: 1,
+            //       fit: FlexFit.tight,
+            //       child: Container(
+            //           //alignment: Alignment.center,
+            //           padding: const EdgeInsets.only(top: 0.0, left: 20.0),
+            //           child: const Text(
+            //             'Email ID *',
+            //             style: TextStyle(
+            //                 color: Colors.black38,
+            //                 fontWeight: FontWeight.bold,
+            //                 fontSize: 15.0),
+            //           )),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 5,
+            // ),
+            // Row(
+            //   children: <Widget>[
+            //     Flexible(
+            //       flex: 1,
+            //       fit: FlexFit.tight,
+            //       child: Container(
+            //         padding: const EdgeInsets.only(
+            //             top: 0.0, left: 10.0, right: 10.0),
+            //         child: TextFormField(
+            //           autofocus: false,
+            //           decoration: InputDecoration(
+            //             filled: true,
+            //             //<-- SEE HERE
+            //             //fillColor: Color.fromRGBO(0, 0, 0, 0.10),
+            //             fillColor: Colors.white,
+            //
+            //             hintText: 'Enter Your Email ID',
+            //             labelStyle: TextStyle(fontSize: 20.0),
+            //
+            //             errorStyle:
+            //                 TextStyle(color: Colors.redAccent, fontSize: 15),
+            //           ),
+            //           controller: email,
+            //           validator: (value) {
+            //             if (value == null || value.isEmpty) {
+            //               return 'Please Enter Email';
+            //             } else if (!value.contains('@')) {
+            //               return 'Please Enter Valid Email';
+            //             }
+            //             return null;
+            //           },
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 5,
+            // ),
             Row(
               children: <Widget>[
                 Flexible(
@@ -619,23 +641,6 @@ class _DonationScreenState extends State<DonationScreen> {
               ],
             ),
 
-            // Google Pay button
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: GooglePayButton(
-            //     paymentConfigurationAsset: 'gpay.json',
-            //     paymentItems: _paymentItems,
-            //     type: GooglePayButtonType.pay,
-            //     margin: const EdgeInsets.only(top: 15.0),
-            //     onPaymentResult: (data) {
-            //       print(data);
-            //     },
-            //     loadingIndicator: const Center(
-            //       child: CircularProgressIndicator(),
-            //     ),
-            //   ),
-            // ),
-            // Google Pay button
 
             const SizedBox(
               height: 15,
@@ -679,9 +684,9 @@ class _DonationScreenState extends State<DonationScreen> {
                       onPressed: () async{
                         var donation = Donation();
                         donation.amount = amount.text;
-                        donation.name = name.text;
+                        donation.name = _userName.toString();
                         donation.mobile = mobile.text;
-                        donation.email = email.text;
+                        donation.email = _userEmail.toString();
                         donation.statecategory = _selectedCategory?.name ?? '';
                         donation.adress = adress.text;
                         donation.cause = cause.text;

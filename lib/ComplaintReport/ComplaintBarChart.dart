@@ -111,7 +111,7 @@ class _ComplaintBarChartState extends State<ComplaintBarChart> {
                 BarChartRodData( toY: _complaintList.first.complaintStatus!.toString().length.toDouble(),width: 10,color: Colors.green,),
               ],),
             BarChartGroupData(x: 3, barRods: [
-                BarChartRodData( toY: _complaintList!.first.complaintType!.isEmpty.toString().length.toDouble(),width: 10,color: Colors.red,),
+                BarChartRodData( toY: _complaintList!.first.complaintType!.toString().length.toDouble(),width: 10,color: Colors.red,),
               ],),
             // BarChartGroupData(x: 4, barRods [
             //   BarChartRodData( toY: _complaintList!.first.complaintcategory.toString().length.toDouble(),width: 15,color: Colors.amber,),
