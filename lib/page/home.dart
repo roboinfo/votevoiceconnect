@@ -9,6 +9,7 @@ import 'package:votevoiceconnect/ComplaintReport/ComplaintBarChart.dart';
 import 'package:votevoiceconnect/ComplaintReport/ComplaintDonutChart.dart';
 import 'package:votevoiceconnect/ComplaintReport/ComplaintLineChart.dart';
 import 'package:votevoiceconnect/ComplaintReport/ComplaintPieChart.dart';
+import 'package:votevoiceconnect/ComplaintReport/allChart.dart';
 import 'package:votevoiceconnect/ComplaintReport/complaintReport.dart';
 import 'package:votevoiceconnect/Gscheme/gschemeBarChart.dart';
 import 'package:votevoiceconnect/article/article1.dart';
@@ -93,9 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text('Vote Voice Connect',style: TextStyle(color: Colors.black)),
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
-
-
-          // bottom:TabBar(),
           actions: [
             IconButton(
               icon: const Icon(Icons.notifications_none,color: Colors.black,),
@@ -125,6 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(
                     height: 0,
                   ),
+
+//create a new page for this video slider page.
 
                   //VideoSlider(),
 
@@ -429,110 +429,74 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
+
+
+// this only name with logo
+
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     //borderRadius: BorderRadius.circular(20.0),
+                  //     //color: Color.fromRGBO(0, 0, 0, 0.10),
+                  //     color: Colors.green,
+                  //   ),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(10.0),
+                  //     child: Row(
+                  //       children: [
+                  //         Icon(
+                  //           Icons.play_circle_fill_outlined,
+                  //           color: Colors.white,
+                  //           size: 25.0,
+                  //         ),
+                  //         Padding(
+                  //           padding: const EdgeInsets.only(left: 5.0),
+                  //           child: Text(
+                  //             'About Vote Voice Connect'.tr,
+                  //             textAlign: TextAlign.center,
+                  //             style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontWeight: FontWeight.bold,
+                  //                 fontSize: 22.0),
+                  //           ),
+                  //         ),
+                  //
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+
                   const SizedBox(
                     height: 5,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      //borderRadius: BorderRadius.circular(20.0),
-                      //color: Color.fromRGBO(0, 0, 0, 0.10),
-                      color: Colors.green,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.play_circle_fill_outlined,
-                            color: Colors.white,
-                            size: 25.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5.0),
-                            child: Text(
-                              'About Vote Voice Connect'.tr,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22.0),
-                            ),
-                          ),
 
-                        ],
-                      ),
+
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                        builder: (BuildContext context) => new allChart())),
+                    child: Container(
+                      height: 180,
+                      width: 400,
+                      child: ComplaintPieChart(),
                     ),
                   ),
 
-                  const SizedBox(
-                    height: 5,
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 130,
-                        child: ComplaintBarChart(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 130,
-                        child: ComplaintLineChart(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 130,
-                        child: ComplaintDonutChart(),
-                      ),
-                    ],
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 130,
-                        child: ArticleBarChart(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 130,
-                        child: EventBarChart(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 130,
-                        child: GschemeBarChart(),
-                      ),
-                    ],
-                  ),
-
-                  Container(
-                    height: 180,
-                    width: 400,
-                    child: ComplaintPieChart(),
-                  ),
-
-                  Container(
-                    height: 220,
-                    width: 400,
-                    child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SfMaps(
-                          layers: [
-                            MapTileLayer(
-                              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                              initialFocalLatLng: MapLatLng(20, 76),
-
-                              initialZoomLevel: 3,
-                            )
-                          ],
-                        )),
-
-                  ),
+                  // Container(
+                  //   height: 220,
+                  //   width: 400,
+                  //   child: Padding(
+                  //       padding: const EdgeInsets.all(10.0),
+                  //       child: SfMaps(
+                  //         layers: [
+                  //           MapTileLayer(
+                  //             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  //             initialFocalLatLng: MapLatLng(20, 76),
+                  //
+                  //             initialZoomLevel: 3,
+                  //           )
+                  //         ],
+                  //       )),
+                  //
+                  // ),
 
 
 

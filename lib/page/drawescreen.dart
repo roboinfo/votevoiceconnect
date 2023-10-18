@@ -14,6 +14,7 @@ import 'package:votevoiceconnect/page/bottomseach.dart';
 import 'package:votevoiceconnect/event/eventscreen.dart';
 import 'package:votevoiceconnect/notificationservice/notifications.dart';
 import 'package:votevoiceconnect/page/splashscreen.dart';
+import 'package:votevoiceconnect/page/videos.dart';
 import 'package:votevoiceconnect/youtube/screens/favScreen.dart';
 import 'package:votevoiceconnect/page/loginscreen.dart';
 import 'package:votevoiceconnect/page/gallery/Profile.dart';
@@ -126,7 +127,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => FavScreen()),
+                    MaterialPageRoute(builder: (context) => allWebVideos()),
                   );
                 },
               ),
@@ -135,7 +136,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.article_outlined,
+                  Icons.notification_add,
                   color: Colors.black,
                   size: 28,
                 ),
@@ -177,26 +178,28 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 },
               ),
 
-              ListTile(
-                leading: Icon(
-                  Icons.article_outlined,
-                  color: Colors.black,
-                  size: 28,
-                ),
-                title: Text(
-                  'Complaint Reports'.tr,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PushNotificationPage()),
-                  );
-                },
-              ),
+// this is live push notification page
+
+              // ListTile(
+              //   leading: Icon(
+              //     Icons.article_outlined,
+              //     color: Colors.black,
+              //     size: 28,
+              //   ),
+              //   title: Text(
+              //     'Notification Reports'.tr,
+              //     style: TextStyle(
+              //       fontSize: 16,
+              //       color: Colors.black,
+              //     ),
+              //   ),
+              //   onTap: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => PushNotificationPage()),
+              //     );
+              //   },
+              // ),
 
               const SizedBox(
                 height: 0,
