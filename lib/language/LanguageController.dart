@@ -20,6 +20,11 @@ class LanguageController extends GetxController{
       'countryCode':'IN',
       'description':'हिंदी',
     },
+    'mr_IN':{
+      'languageCode':'mr',
+      'countryCode':'IN',
+      'description':'मराठी',
+    },
     'kn_IN':{
       'languageCode':'kn',
       'countryCode':'IN',

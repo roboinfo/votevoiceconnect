@@ -90,6 +90,7 @@ dependencies:
   get_storage: ^2.1.1
   fl_chart: ^0.63.0
   pie_chart: ^5.3.2
+  syncfusion_flutter_maps: ^23.1.36
 
 flutter_icons:
   android: true
@@ -175,6 +176,7 @@ flutter:
     - assets/pr8.jpg
     - assets/pr9.jpg
     - assets/complaint.png
+    - assets/v_logo_round.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

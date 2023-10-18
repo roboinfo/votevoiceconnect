@@ -131,7 +131,7 @@ class _LoginScreen1State extends State<LoginScreen1> {
   Widget build(BuildContext context) {
     getDeviceTokenToSendNotification();
     return Scaffold(
-      // backgroundColor: Colors.white,
+       backgroundColor: Colors.blueAccent,
       // appBar: AppBar(
       //   backgroundColor: Colors.white,
       //   elevation: 0.0,
@@ -147,63 +147,19 @@ class _LoginScreen1State extends State<LoginScreen1> {
       //     ),
       //   ],
       // ),
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-
-          image: DecorationImage(
-          image: AssetImage('assets/logo.png'), fit: BoxFit.cover),),
-
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.1, 0.3, 0.5, 0.7, 0.9],
-                colors: [
-                  Colors.black.withOpacity(0.4),
-                  Colors.black.withOpacity(0.55),
-                  Colors.black.withOpacity(0.7),
-                  Colors.black.withOpacity(0.8),
-                  Colors.black.withOpacity(1.0),
-                ],
-              ),
-            ),
-            child: Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: ListView(
-                  children: <Widget>[
-                    // Padding(
-                    //   padding: const EdgeInsets.only(
-                    //       left: 48.0, top: 14.0, right: 48.0, bottom: 14.0),
-                    //   child: TextField(
-                    //     controller: email,
-                    //     decoration: InputDecoration(
-                    //         hintText: 'youremail@example.com',
-                    //         labelText: 'Enter your email'),
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(
-                    //       left: 48.0, top: 14.0, right: 48.0, bottom: 14.0),
-                    //   child: TextField(
-                    //     controller: password,
-                    //     obscureText: true,
-                    //     decoration: InputDecoration(
-                    //         hintText: 'Enter your password', labelText: '******'),
-                    //   ),
-                    // ),
-                    const SizedBox(height: 40.0),
-                    Container(
-                      child: Center(
-                        child: const Text(
-                          'Sign In',
+      body: ListView(
+          children: <Widget>[
+            Container(
+              height: 150,
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40.0,left: 20),
+                        child: Text(
+                          'Welcome Back',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
@@ -212,251 +168,306 @@ class _LoginScreen1State extends State<LoginScreen1> {
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 10.0),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: const Text(
-                            'Email',
-                            style: kLabelStyle,
-                          ),
-                        ),
-                        const SizedBox(height: 10.0),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          //decoration: kBoxDecorationStyle,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200]!.withOpacity(0.3),
-                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          ),
-                          height: 60.0,
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            autofocus: false,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                            ),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(top: 14.0),
-                              prefixIcon: Icon(
-                                Icons.email,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Enter your Email',
-                              hintStyle: kHintTextStyle,
-                              errorStyle: TextStyle(
-                                  color: Colors.redAccent, fontSize: 15),
-                            ),
-                            controller: email,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please Enter Email';
-                              } else if (!value.contains('@')) {
-                                return 'Please Enter Valid Email';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 10.0),
-                        Container(
-                          child: const Text(
-                            'Password',
-                            style: kLabelStyle,
-                          ),
-                        ),
-                        const SizedBox(height: 10.0),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          //decoration: kBoxDecorationStyle,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200]!.withOpacity(0.3),
-                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          ),
-                          height: 60.0,
-                          child: TextFormField(
-                            autofocus: false,
-                            obscureText: true,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                            ),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(top: 14.0),
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Enter your Password',
-                              hintStyle: kHintTextStyle,
-                              errorStyle: TextStyle(
-                                  color: Colors.redAccent, fontSize: 15),
-                            ),
-                            controller: password,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please Enter Password';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () => {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder:(context ) => ForgotPasswordPage(),),),
-
-
-
-                        },
-                        //  padding: EdgeInsets.only(right: 0.0),
-                        child: const Text(
-                          'Forgot Password?',
-                          style: kLabelStyle,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: SizedBox(
-                        height: 18.0,
-                        child: Row(
-                          children: <Widget>[
-                            Theme(
-                              data: ThemeData(
-                                  unselectedWidgetColor: Colors.white),
-                              child: Checkbox(
-                                value: _rememberMe,
-                                checkColor: Colors.green,
-                                activeColor: Colors.white,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _rememberMe = value!;
-                                  });
-                                },
-                              ),
-                            ),
-                            const Text(
-                              'Remember me',
-                              style: kLabelStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      width: double.infinity,
-                      child: ElevatedButton(
-
-                        onPressed: () {
-                          var user = User();
-                          user.email = email.text;
-                          user.password = password.text;
-                          user.device_token = deviceToken.toString();
-
-                          _login(context, user);
-                        },
-                        style: ButtonStyle(
-                          backgroundColor:
-                          MaterialStateProperty.all(Colors.white),
-                          padding: MaterialStateProperty.all(EdgeInsets.all(6)),
-                          shape:
-                          MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                        child: const Text(
-                          'LOGIN',
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0,left: 20.0),
+                        child: Text(
+                          'Hey good to see you here',
                           style: TextStyle(
-                            color: Colors.blue,
-                            letterSpacing: 1.5,
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                             fontFamily: 'OpenSans',
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: const <Widget>[
-                          Text(
-                            '- OR -',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(height: 20.0),
-
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 10.0),
-
-                    // ElevatedButton(
-                    //   onPressed: () {
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (context) => RegistrationScreen(
-                    //                   cartItems: this.widget.cartItems,
-                    //                 )));
-                    //   },
-                    //   child: FittedBox(child: Text('Register your account')),
-                    // ),
-
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Don't have an Account? ",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () => {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder: (context, a, b) => RegistrationScreen(cartItems: this.widget.cartItems,),
-                                    transitionDuration: Duration(seconds: 0),
-                                  ),
-                                      (route) => false)
-                            },
-                            child: Text('Signup',style: kLabelStyle,),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                  ],
-                ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 90),
+                    child: Image.asset('assets/v_logo_round.png'),
+                  ),
+                ],
               ),
             ),
+         Container(
+           height: 812,
+           decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(
+
+                 topLeft: Radius.circular(40),
+                 topRight: Radius.circular(40),
+               ))),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+            child: ListView(
+              children: <Widget>[
+
+
+
+                Container(
+                  child: Center(
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontFamily: 'OpenSans',
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: const Text(
+                        'Email',
+                        style: kLabelStyle,
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      //decoration: kBoxDecorationStyle,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200]!.withOpacity(0.3),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      height: 60.0,
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        autofocus: false,
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontFamily: 'OpenSans',
+                        ),
+                        decoration: InputDecoration(
+                          //border: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 14.0),
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Colors.blueAccent,
+                          ),
+                          hintText: 'Enter your Email',
+                          hintStyle: kHintTextStyle,
+                          errorStyle: TextStyle(
+                              color: Colors.redAccent, fontSize: 15),
+                        ),
+                        controller: email,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter Email';
+                          } else if (!value.contains('@')) {
+                            return 'Please Enter Valid Email';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10.0),
+                    Container(
+                      child: const Text(
+                        'Password',
+                        style: kLabelStyle,
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      //decoration: kBoxDecorationStyle,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200]!.withOpacity(0.3),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      height: 60.0,
+                      child: TextFormField(
+                        autofocus: false,
+                        obscureText: true,
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontFamily: 'OpenSans',
+                        ),
+                        decoration: InputDecoration(
+                          //border: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 14.0),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.blueAccent,
+                          ),
+                          hintText: 'Enter your Password',
+                          hintStyle: kHintTextStyle,
+                          errorStyle: TextStyle(
+                              color: Colors.redAccent, fontSize: 15),
+                        ),
+                        controller: password,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter Password';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder:(context ) => ForgotPasswordPage(),),),
+
+
+
+                    },
+                    //  padding: EdgeInsets.only(right: 0.0),
+                    child: const Text(
+                      'Forgot Password?',
+                      //style: kLabelStyle,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'OpenSans',
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  child: SizedBox(
+                    height: 18.0,
+                    child: Row(
+                      children: <Widget>[
+                        Theme(
+                          data: ThemeData(
+                              unselectedWidgetColor: Colors.black),
+                          child: Checkbox(
+                            value: _rememberMe,
+                            checkColor: Colors.green,
+                            activeColor: Colors.blueAccent,
+                            onChanged: (value) {
+                              setState(() {
+                                _rememberMe = value!;
+                              });
+                            },
+                          ),
+                        ),
+                        const Text(
+                          'Remember me',
+                          //style: kLabelStyle,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'OpenSans',
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30.0),
+                Container(
+                  padding: const EdgeInsets.only(left: 20.0,right: 20),
+                  width: double.infinity,
+                  child: ElevatedButton(
+
+                    onPressed: () {
+                      var user = User();
+                      user.email = email.text;
+                      user.password = password.text;
+                      user.device_token = deviceToken.toString();
+
+                      _login(context, user);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all(Colors.blueAccent),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(6)),
+                      shape:
+                      MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    ),
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                        color: Colors.black,
+                        letterSpacing: 1.5,
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'OpenSans',
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+
+
+
+                // ElevatedButton(
+                //   onPressed: () {
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => RegistrationScreen(
+                //                   cartItems: this.widget.cartItems,
+                //                 )));
+                //   },
+                //   child: FittedBox(child: Text('Register your account')),
+                // ),
+
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an Account? ",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (context, a, b) => RegistrationScreen(cartItems: this.widget.cartItems,),
+                                transitionDuration: Duration(seconds: 0),
+                              ),
+                                  (route) => false)
+                        },
+                        child: Text('Signup',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'OpenSans',
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          //style: kLabelStyle,
+                          ),
+                      ),
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
           ),
-        ),
+        ),],
       ),
     );
   }

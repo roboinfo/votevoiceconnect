@@ -46,7 +46,7 @@ class _carouselSliderState extends State<carouselSlider> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 18),
             child: Container(
-              height: 160,
+              height: 190,
               decoration: BoxDecoration(
                 color: Colors.white, // You can change this to any color you like
                 borderRadius: BorderRadius.circular(15.0),
@@ -60,8 +60,8 @@ class _carouselSliderState extends State<carouselSlider> {
       children: [
         Container(
           margin: EdgeInsets.symmetric(vertical: 2.0),
-          height: 180,
-          width: 400,
+          height: 140,
+          width: 500,
           child: CarouselSlider.builder(
             itemCount: items.length,
             itemBuilder: (context, index, realIndex) {
@@ -77,7 +77,7 @@ class _carouselSliderState extends State<carouselSlider> {
                   );
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 16.0),
+                  margin: EdgeInsets.symmetric(vertical: 2.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     image: DecorationImage(
@@ -101,17 +101,18 @@ class _carouselSliderState extends State<carouselSlider> {
             ),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(
-              items.length,
-                  (index) => Indicator(
-                isActive: _selectedIndex == index,
-              ),
-            )
-          ],
-        )
+        // this code for below dots ... on slider images
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     ...List.generate(
+        //       items.length,
+        //           (index) => Indicator(
+        //         isActive: _selectedIndex == index,
+        //       ),
+        //     )
+        //   ],
+        // )
       ],
     );
   }

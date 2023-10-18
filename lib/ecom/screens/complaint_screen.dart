@@ -195,7 +195,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                       //alignment: Alignment.center,
                       padding: const EdgeInsets.only(top: 10.0, left: 20.0),
                       child: const Text(
-                        'Select Block *',
+                        'Select City *',
                         style: TextStyle(
                             color: Colors.black38,
                             fontWeight: FontWeight.bold,
@@ -229,7 +229,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                               width: 0.80),
                         ),
                         child: DropdownButton<BlockCategory>(
-                          hint: Text('Select Block'),
+                          hint: Text('Select City'),
                           value: _selectedCategory,
                           // The currently selected category
                           items: _blockcategoryList.map((category) {
@@ -345,7 +345,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                       padding:
                       const EdgeInsets.only(top: 0.0, left: 20.0),
                       child: const Text(
-                        'Description',
+                        'Description *',
                         style: TextStyle(
                             color: Colors.black38,
                             fontWeight: FontWeight.bold,

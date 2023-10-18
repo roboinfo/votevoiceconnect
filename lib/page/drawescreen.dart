@@ -64,15 +64,18 @@ class _DrawerScreenState extends State<DrawerScreen> {
   final storage = new FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
+
     return Container(
       child: (SafeArea(
+
         child: Drawer(
+
           //backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
           child: Column(
             children: <Widget>[
               UserAccountsDrawerHeader(
-                accountName: Text('Welcome, $_userName!'.tr, style: TextStyle(fontSize: 18, color: Colors.white),),
-                accountEmail: Text('contact.rinfo@gmail.com', style: TextStyle(fontSize: 18, color: Colors.white),),
+                accountName: Text('Welcome, $_userName!'.tr, style: TextStyle(fontSize: 18, color: Colors.black),),
+                accountEmail: Text('contact.rinfo@gmail.com', style: TextStyle(fontSize: 18, color: Colors.black),),
                 currentAccountPicture: CircleAvatar(
                   child: ClipOval(child: Image.asset('assets/Roboinfocom.png'),),
                 ),
@@ -220,6 +223,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ],
           ),
         ),
+
       )),
     );
   }

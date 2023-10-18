@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:votevoiceconnect/language/InitialBinding.dart';
 import 'package:votevoiceconnect/language/StorageService.dart';
 import 'package:votevoiceconnect/notificationservice/local_notification_service.dart';
-import 'package:votevoiceconnect/page/LocalString.dart';
+import 'package:votevoiceconnect/language/LocalString.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:votevoiceconnect/ecom/screens/login_screen.dart';
 import 'package:votevoiceconnect/page/home2.dart';
