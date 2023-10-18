@@ -15,9 +15,9 @@ import 'choose_payment_method.dart';
 import 'package:http/http.dart' as http;
 
 class DonationScreen extends StatefulWidget {
-  final List<Product> cartItems;
 
-  const DonationScreen({super.key, required this.cartItems});
+
+  const DonationScreen({super.key, });
 
   @override
   State<DonationScreen> createState() => _DonationScreenState();
@@ -117,6 +117,13 @@ class _DonationScreenState extends State<DonationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
+      appBar: AppBar(
+        title: const Text('Donation',style: TextStyle(color: Colors.black)),
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+
+
+      ),
       body: SafeArea(
         child: ListView(
           children: <Widget>[

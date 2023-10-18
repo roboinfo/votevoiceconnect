@@ -12,6 +12,7 @@ import 'package:votevoiceconnect/ComplaintReport/ComplaintPieChart.dart';
 import 'package:votevoiceconnect/ComplaintReport/allChart.dart';
 import 'package:votevoiceconnect/ComplaintReport/complaintReport.dart';
 import 'package:votevoiceconnect/Gscheme/gschemeBarChart.dart';
+import 'package:votevoiceconnect/Gscheme/scheme1.dart';
 import 'package:votevoiceconnect/article/article1.dart';
 import 'package:votevoiceconnect/article/articleBarChart.dart';
 import 'package:votevoiceconnect/ecom/widgets/carousel_slider.dart';
@@ -34,6 +35,7 @@ import 'package:votevoiceconnect/page/loginscreen.dart';
 import 'package:votevoiceconnect/page/registration.dart';
 import 'package:votevoiceconnect/page/splashscreen.dart';
 import 'package:votevoiceconnect/youtube/screens/favScreen.dart';
+import '../Gscheme/gscheme.dart';
 import '../ecom/screens/privatedonation_screen.dart';
 import 'Complaint/complaint.dart';
 
@@ -219,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onPressed: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => const article1()),
+                                      MaterialPageRoute(builder: (context) => DonationScreen()),
                                     );
                                   },
                                   child: Column(
@@ -254,7 +256,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onPressed: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => const article1()),
+                                      MaterialPageRoute(builder: (context) => const PrivateDonationScreen()),
                                     );
                                   },
                                   child: Column(
@@ -368,7 +370,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => complaintReport()),
+                                    MaterialPageRoute(builder: (context) => Profile()),
                                   );
                                 },
                                 child: Column(
@@ -403,7 +405,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => complaintReport()),
+                                    MaterialPageRoute(builder: (context) => scheme1()),
                                   );
                                 },
                                 child: Column(
@@ -545,6 +547,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
+
         // Padding(
         //   padding: const EdgeInsets.all(0.0),
         //   child: Column(

@@ -11,9 +11,9 @@ import 'package:votevoiceconnect/ecom/models/privatedonation.dart';
 import 'package:http/http.dart' as http;
 
 class PrivateDonationScreen extends StatefulWidget {
-  final List<Product> cartItems;
 
-  const PrivateDonationScreen({super.key, required this.cartItems});
+
+  const PrivateDonationScreen({super.key,});
 
   @override
   State<PrivateDonationScreen> createState() => _PrivateDonationScreenState();
@@ -73,6 +73,13 @@ class _PrivateDonationScreenState extends State<PrivateDonationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
+      appBar: AppBar(
+        title: const Text('Private Donation',style: TextStyle(color: Colors.black)),
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+
+
+      ),
       body: SafeArea(
         child: ListView(
           children: <Widget>[
