@@ -10,8 +10,10 @@ import 'package:votevoiceconnect/ecom/screens/registration_screen.dart';
 import 'package:votevoiceconnect/ecom/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:votevoiceconnect/page/Admin/adminHome.dart';
 import 'package:votevoiceconnect/page/home2.dart';
 import 'package:http/http.dart' as http;
+import 'package:votevoiceconnect/page/videos.dart';
 
 import '../../page/utility/constants.dart';
 import 'package:votevoiceconnect/ecom/screens/checkout_screen.dart';
@@ -37,56 +39,163 @@ class _LoginScreen1State extends State<LoginScreen1> {
     _checkLoggedInStatus();
   }
 
+  // _checkLoggedInStatus() async {
+  //   SharedPreferences _prefs = await SharedPreferences.getInstance();
+  //
+  //   // Check if the user is logged in
+  //   int userId = _prefs.getInt('userId') ?? 0;
+  //   String userName = _prefs.getString('userName') ?? '';
+  //   String userEmail = _prefs.getString('userEmail') ?? '';
+  //
+  //   if (userId != 0 && userName.isNotEmpty && userEmail.isNotEmpty) {
+  //     // If the user is logged in, navigate to the home screen
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => home2()),
+  //     );
+  //   }
+  // }
+
+  // _checkLoggedInStatus() async {
+  //   SharedPreferences _prefs = await SharedPreferences.getInstance();
+  //
+  //   // Check if the user is logged in
+  //   int userId = _prefs.getInt('userId') ?? 0;
+  //   String userName = _prefs.getString('userName') ?? '';
+  //   String userEmail = _prefs.getString('userEmail') ?? '';
+  //
+  //   if (userId != 0 && userName.isNotEmpty && userEmail.isNotEmpty) {
+  //     // If the user is logged in, navigate to the appropriate screen based on their role
+  //     int userRole = _prefs.getInt('userRole') ?? 0;
+  //
+  //     if (userRole == 1) {
+  //       // Admin user
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => AdminHome()),
+  //       );
+  //     } else if (userRole == 0) {
+  //       // Regular user
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => home2()),
+  //       );
+  //     }
+  //   }
+  // }
   _checkLoggedInStatus() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
 
     // Check if the user is logged in
-    int userId = _prefs.getInt('userId') ?? 0;
-    String userName = _prefs.getString('userName') ?? '';
-    String userEmail = _prefs.getString('userEmail') ?? '';
+    int? userId = _prefs.getInt('userId');
+    String? userName = _prefs.getString('userName');
+    String? userEmail = _prefs.getString('userEmail');
+    int? userRole = _prefs.getInt('userRole');
 
-    if (userId != 0 && userName.isNotEmpty && userEmail.isNotEmpty) {
-      // If the user is logged in, navigate to the home screen
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => home2()),
-      );
-    }
-  }
-
-  _login(BuildContext context, User user) async {
-    var _userService = UserService();
-
-    var registeredUser = await _userService.login(user);
-    var result = json.decode(registeredUser.body);
-
-    if (result['result'] == true) {
-      SharedPreferences _prefs = await SharedPreferences.getInstance();
-
-      _prefs.setInt('userId', result['user']['id']);
-      _prefs.setString('userName', result['user']['name']);
-      _prefs.setString('userEmail', result['user']['email']);
-
-      if (this.widget.cartItems != null && this.widget.cartItems.length > 0) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CheckoutScreen(
-                  cartItems: this.widget.cartItems,
-                )));
-      } else {
+    if (userId != null && userName != null && userEmail != null) {
+      // If the user is logged in, navigate to the appropriate screen based on their role
+      if (userRole == 1) {
+        // Admin user
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => AdminHome()),
+        );
+      } else if (userRole == 0) {
+        // Regular user
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => home2()),
         );
       }
-    } else {
-      _showSnackMessage(Text(
-        'Failed to login!',
-        style: TextStyle(color: Colors.red),
-      ));
     }
   }
+
+
+
+  // _login(BuildContext context, User user) async {
+  //   var _userService = UserService();
+  //
+  //   var registeredUser = await _userService.login(user);
+  //   var result = json.decode(registeredUser.body);
+  //
+  //   if (result['result'] == true) {
+  //     SharedPreferences _prefs = await SharedPreferences.getInstance();
+  //
+  //     _prefs.setInt('userId', result['user']['id']);
+  //     _prefs.setString('userName', result['user']['name']);
+  //     _prefs.setString('userEmail', result['user']['email']);
+  //
+  //     if (this.widget.cartItems != null && this.widget.cartItems.length > 0) {
+  //       Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //               builder: (context) => CheckoutScreen(
+  //                 cartItems: this.widget.cartItems,
+  //               )));
+  //     } else {
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => home2()),
+  //       );
+  //     }
+  //   } else {
+  //     _showSnackMessage(Text(
+  //       'Failed to login!',
+  //       style: TextStyle(color: Colors.red),
+  //     ));
+  //   }
+  // }
+
+
+  _login(BuildContext context, User user) async {
+    var _userService = UserService();
+    var registeredUser = await _userService.login(user);
+    var result = json.decode(registeredUser.body);
+
+    if (result['result'] == true) {
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      _prefs.setInt('userId', result['user']['id']);
+      _prefs.setString('userName', result['user']['name']);
+      _prefs.setString('userEmail', result['user']['email']);
+
+      int userRole = result['user']['role']; // Assuming 'role' is a field in the user data.
+
+      if (userRole == 1) {
+        // Admin user
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => AdminHome()),
+        );
+      } else if (userRole == 0) {
+        // Regular user
+        if (this.widget.cartItems != null && this.widget.cartItems.length > 0) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CheckoutScreen(cartItems: this.widget.cartItems),
+            ),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => home2()),
+          );
+        }
+      } else {
+        // Handle other roles as needed
+      }
+    } else {
+      _showSnackMessage(
+        Text(
+          'Failed to login!',
+          style: TextStyle(color: Colors.red),
+        ),
+      );
+    }
+  }
+
+
+
   _showSnackMessage(message) {
     var snackBar = SnackBar(
       content: message,

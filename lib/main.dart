@@ -9,6 +9,7 @@ import 'package:votevoiceconnect/notificationservice/local_notification_service.
 import 'package:votevoiceconnect/language/LocalString.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:votevoiceconnect/ecom/screens/login_screen.dart';
+import 'package:votevoiceconnect/page/Admin/adminHome.dart';
 import 'package:votevoiceconnect/page/home2.dart';
 
 var storage;
@@ -67,22 +68,43 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isLoggedIn = false;
+  int _userRole = 0;
 
   @override
   void initState() {
     _checkIfLoggedIn();
     super.initState();
   }
-  void _checkIfLoggedIn() async{
-    // check if token is there
+
+  // void _checkIfLoggedIn() async{
+  //   // check if token is there
+  //   SharedPreferences localStorage = await SharedPreferences.getInstance();
+  //   var token = localStorage.getString('token');
+  //   var userRole = localStorage.getInt('userRole');
+  //   if(token!= null){
+  //     setState(() {
+  //       _isLoggedIn = true;
+  //       _userRole = userRole ?? 0;
+  //     });
+  //   }
+  // }
+
+  void _checkIfLoggedIn() async {
+    // Check if token is there
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var token = localStorage.getString('token');
-    if(token!= null){
+    var userRole = localStorage.getInt('userRole');
+
+    if (token != null) {
       setState(() {
         _isLoggedIn = true;
+        if (userRole != null) {
+          _userRole = userRole;
+        }
       });
     }
   }
+
 
 
   @override
@@ -99,8 +121,15 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Colors.blueAccent,
         ),
-      home: _isLoggedIn ? home2() :  LoginScreen1(cartItems: [],),
-      );
+      // home: _isLoggedIn ? home2() :  LoginScreen1(cartItems: [],),
+
+      home: _isLoggedIn
+          ? _userRole == 1
+          ? AdminHome()
+          : home2()
+          : LoginScreen1(cartItems: []),
+
+    );
 
   }
 }

@@ -30,6 +30,11 @@ class LanguageController extends GetxController{
       'countryCode':'IN',
       'description':'ಕನ್ನಡ',
     },
+    'bn_IN':{
+      'languageCode':'bn',
+      'countryCode':'IN',
+      'description':'বাংলা',
+    },
   };
 
   void updateLocale(String key){
