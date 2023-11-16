@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:votevoiceconnect/youtube/models/channel_model.dart';
 import 'package:votevoiceconnect/youtube/models/video_model.dart';
@@ -150,24 +151,15 @@ class _HomeScreenState extends State<FavScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Color.fromARGB(255, 90, 90, 90),
-        title: Row(
-          children: [
-            // Icon(
-            //   Icons.event,
-            //   color: Colors.deepPurple,
-            //   size: 30.0,
-            // ),
-            const Text(
-              '      News Videos',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0),
+        title: Text(
+         'News Videos'.tr,
+         style: TextStyle(
+             color: Colors.white,
+             fontWeight: FontWeight.bold,
+             fontSize: 22.0),
             ),
-          ],
-        ),
       ),
 
       body: _channel != null

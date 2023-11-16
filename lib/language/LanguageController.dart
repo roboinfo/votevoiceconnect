@@ -45,6 +45,31 @@ class LanguageController extends GetxController{
       'countryCode':'IN',
       'description':'ਪੰਜਾਬੀ',
     },
+    'gu_IN':{
+      'languageCode':'gu',
+      'countryCode':'IN',
+      'description':'ગુજરાતી',
+    },
+    'ml_IN':{
+      'languageCode':'ml',
+      'countryCode':'IN',
+      'description':'മലയാളം',
+    },
+    'ta_IN':{
+      'languageCode':'ta',
+      'countryCode':'IN',
+      'description':'தமிழ்',
+    },
+    'te_IN':{
+      'languageCode':'te',
+      'countryCode':'IN',
+      'description':'తెలుగు',
+    },
+    'as_IN':{
+      'languageCode':'as',
+      'countryCode':'IN',
+      'description':'অসমীয়া',
+    },
 
   };
 

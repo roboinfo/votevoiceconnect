@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:get/get.dart';
 import 'package:votevoiceconnect/ecom/models/product.dart';
 import 'package:votevoiceconnect/ecom/models/upicategory.dart';
 import 'package:votevoiceconnect/ecom/screens/choose_payment_method.dart';
@@ -74,7 +75,7 @@ class _PrivateDonationScreenState extends State<PrivateDonationScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
       appBar: AppBar(
-        title: const Text('Private Donation',style: TextStyle(color: Colors.black)),
+        title: Text('Private Donation'.tr,style: TextStyle(color: Colors.black)),
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
 

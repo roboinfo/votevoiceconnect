@@ -54,7 +54,7 @@ class _complaintReportState extends State<complaintReport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Complaint History'),
+        appBar: AppBar(title: Text('Complaint History'.tr),
           backgroundColor: Color.fromARGB(255, 90, 90, 90),
         ),
 

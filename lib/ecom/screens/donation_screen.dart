@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:get/get.dart';
 import 'package:pay/pay.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:votevoiceconnect/ecom/models/donation.dart';
@@ -118,7 +119,7 @@ class _DonationScreenState extends State<DonationScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
       appBar: AppBar(
-        title: const Text('Donation',style: TextStyle(color: Colors.black)),
+        title: Text('Donation'.tr,style: TextStyle(color: Colors.black)),
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
 

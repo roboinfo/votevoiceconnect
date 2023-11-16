@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:votevoiceconnect/apiServices/api_service.dart';
 import 'package:votevoiceconnect/Blog/user_model.dart';
 import 'package:votevoiceconnect/article/user_model.dart';
@@ -159,23 +160,15 @@ class _article1State extends State<article1> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Color.fromARGB(255, 90, 90, 90),
-        title: Row(
-          children: [
-            // Icon(
-            //   Icons.event,
-            //   color: Colors.deepPurple,
-            //   size: 30.0,
-            // ),
-            const Text(
-              '           Articles',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0),
-            ),
-          ],
+        title: Text(
+          'Articles'.tr,
+
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 22.0),
         ),
       ),
       body: _articleModel == null || _articleModel!.isEmpty
