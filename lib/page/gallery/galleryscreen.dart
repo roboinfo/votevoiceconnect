@@ -13,6 +13,8 @@ class GalleryScreen extends StatefulWidget {
 
 class _GalleryScreenState extends State<GalleryScreen> {
   late List<Gallery>? _galleryModel = [];
+  List<String> displayedCategories = [];
+  String? selectedCategory;
 
   @override
   void initState() {
@@ -31,27 +33,23 @@ class _GalleryScreenState extends State<GalleryScreen> {
       backgroundColor: Color.fromRGBO(0, 0, 0, 0.10),
       body: Column(
         children: <Widget>[
-
-
-
           const SizedBox(
             height: 4,
           ),
-
-
           Expanded(
             child: _galleryModel == null || _galleryModel!.isEmpty
-                ? const Center(
-                child: CircularProgressIndicator()
-            )
+                ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: _galleryModel!.length,
               itemBuilder: (context, index) {
-                return SizedBox(
-                  height: 10,
+                String category = _galleryModel![index].categoryId.toString();
 
-                  child: Container(color: Colors.white,
+                if (!displayedCategories.contains(category)) {
+                  displayedCategories.add(category);
+
+                  return Container(
+                    color: Colors.white,
                     child: Column(
                       children: [
                         Padding(
@@ -67,31 +65,39 @@ class _GalleryScreenState extends State<GalleryScreen> {
                             ),
                           ),
                         ),
-
-
                         Flexible(
                           flex: 1,
                           fit: FlexFit.tight,
                           child: Padding(
                             padding: const EdgeInsets.all(6.0),
                             child: Text(
-                              _galleryModel![index].categoryId.toString(),
+                              category,
                               textAlign: TextAlign.start,
-                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                              style:
+                              TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                        Icon(Icons.expand_more_outlined,),
+
+                        if (selectedCategory == category)
+                          Icon(Icons.arrow_drop_down_circle_outlined),
+
+
                       ],
                     ),
-                  ),
-                );
+                  );
+                } else {
+                  return Container(); // If the category has been displayed, show an empty container
+                }
               },
-            ),),
+            ),
+          ),
+
+
+
 
         ],
       ),
     );
   }
 }
-
