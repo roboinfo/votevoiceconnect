@@ -278,7 +278,7 @@ class ProfileState extends State<Profile> {
               ),
             ),
 
-            Container(height: 250,width: 500,
+            Container(height: 1000,width: 500,
               child: GalleryScreen(),
             ),
 

@@ -13,7 +13,7 @@ class Gallery {
   String title;
   String details;
   String featuredImageUrl;
-  int categoryId;
+  String categoryId;
   int userId;
   DateTime createdAt;
   DateTime updatedAt;

@@ -38,79 +38,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
             height: 4,
           ),
 
-          // Expanded(
-          //   child: _blogModel == null || _blogModel!.isEmpty
-          //       ? const Center(
-          //       child: CircularProgressIndicator()
-          //   )
-          //       : ListView.builder(
-          //     itemCount: _blogModel!.length,
-          //     itemBuilder: (context, index) {
-          //       return Card(
-          //         child: Column(
-          //           children: [
-          //             Padding(
-          //               padding: const EdgeInsets.all(4.0),
-          //               child:
-          //               // Row(
-          //               //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //               //   children: [
-          //               //     // Text(_userModel![index].id.toString()),
-          //               //     Text(_articleModel![index].title.toString()),
-          //               //   ],
-          //               // ),
-          //
-          //               GestureDetector(
-          //                 // onTap: () {
-          //                 //   Navigator.push(
-          //                 //       context,
-          //                 //       MaterialPageRoute(
-          //                 //           builder: (context) => article1()));
-          //                 // },
-          //                 child: Row(
-          //                   children: [
-          //                     Container(
-          //                       alignment: Alignment.centerLeft,
-          //                       child: Image.network(_blogModel![index]
-          //                           .featuredImageUrl
-          //                           .toString()),
-          //
-          //                       width: 100,
-          //                     ),
-          //                     // Padding(
-          //                     //   padding:
-          //                     //       const EdgeInsets.symmetric(vertical: 0.0),
-          //                     //   child: Container(
-          //                     //     padding: const EdgeInsets.all(4),
-          //                     //     decoration: const BoxDecoration(
-          //                     //       color: Colors.white,
-          //                     //     ),
-          //                     //   ),
-          //                     // ),
-          //
-          //                     Flexible(
-          //                       flex: 1,
-          //                       fit: FlexFit.tight,
-          //                       child: Padding(
-          //                         padding: const EdgeInsets.all(6.0),
-          //                         child: Text(
-          //                           _blogModel![index].title.toString(),
-          //                           textAlign: TextAlign.start,
-          //                           style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
-          //                         ),
-          //                       ),
-          //                     ),
-          //                     //Icon(Icons.expand_more_outlined,),
-          //                   ],
-          //                 ),
-          //               ),
-          //
-          //             ),
-          //           ],
-          //         ),
-          //       );
-          //     },
-          //   ),),
 
           Expanded(
             child: _galleryModel == null || _galleryModel!.isEmpty
@@ -124,53 +51,38 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 return SizedBox(
                   height: 10,
 
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => gallery1()));
-                    },
-                    child: Container(color: Colors.white,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              child: Image.network(_galleryModel![index]
-                                  .featuredImageUrl
-                                  .toString()),
-
-                              width: 300,
-                            ),
-                          ),
-                          // Padding(
-                          //   padding:
-                          //       const EdgeInsets.symmetric(vertical: 0.0),
-                          //   child: Container(
-                          //     padding: const EdgeInsets.all(4),
-                          //     decoration: const BoxDecoration(
-                          //       color: Colors.white,
-                          //     ),
-                          //   ),
-                          // ),
-
-                          Flexible(
-                            flex: 1,
-                            fit: FlexFit.tight,
-                            child: Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Text(
-                                _galleryModel![index].title.toString(),
-                                textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                  child: Container(color: Colors.white,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: ClipOval(
+                              child: Image.network(
+                                _galleryModel![index].featuredImageUrl.toString(),
+                                width: 100,
+                                height: 80,
                               ),
                             ),
                           ),
-                          Icon(Icons.expand_more_outlined,),
-                        ],
-                      ),
+                        ),
+
+
+                        Flexible(
+                          flex: 1,
+                          fit: FlexFit.tight,
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: Text(
+                              _galleryModel![index].categoryId.toString(),
+                              textAlign: TextAlign.start,
+                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.expand_more_outlined,),
+                      ],
                     ),
                   ),
                 );

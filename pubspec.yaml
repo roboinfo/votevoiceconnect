@@ -42,7 +42,11 @@ dependencies:
   page_transition: ^2.0.9
   carousel_slider: ^4.2.1
   youtube_player_flutter: ^8.1.2
-  #flutter_instagram_stories: ^1.0.3
+
+  #flutter_instagram_stories: ^0.2.0
+  flutter_instagram_stories: ^1.0.3+1
+
+
   http: ^1.1.0
   cached_network_image: ^3.2.3
   share_plus: ^7.0.2
@@ -91,6 +95,7 @@ dependencies:
   fl_chart: ^0.63.0
   pie_chart: ^5.3.2
   syncfusion_flutter_maps: ^23.1.36
+
 
 flutter_icons:
   android: true
