@@ -95,6 +95,7 @@ dependencies:
   fl_chart: ^0.63.0
   pie_chart: ^5.3.2
   syncfusion_flutter_maps: ^23.1.36
+  image_picker: ^1.0.5
 
 
 flutter_icons:

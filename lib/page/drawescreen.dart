@@ -107,6 +107,28 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     MaterialPageRoute(builder: (context) => Profile()),
                   );
                 },
+              ),const SizedBox(
+                height: 30,
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.person,
+                  color: Colors.black,
+                  size: 28,
+                ),
+                title: Text(
+                  'EventListScreen'.tr,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EventListScreen()),
+                  );
+                },
               ),
               const SizedBox(
                 height: 0,
