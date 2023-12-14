@@ -13,6 +13,7 @@ import 'package:votevoiceconnect/ecom/screens/vregistration_screen.dart';
 import 'package:votevoiceconnect/page/bottomseach.dart';
 import 'package:votevoiceconnect/event/eventscreen.dart';
 import 'package:votevoiceconnect/notificationservice/notifications.dart';
+import 'package:votevoiceconnect/page/sampleEventAdmin.dart';
 import 'package:votevoiceconnect/page/splashscreen.dart';
 import 'package:votevoiceconnect/page/videos.dart';
 import 'package:votevoiceconnect/youtube/screens/favScreen.dart';
